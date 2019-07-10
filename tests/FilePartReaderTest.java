@@ -13,12 +13,10 @@ class FilePartReaderTest {
         filePartReader.setup("text.txt",2,4);
         assertEquals(9,filePartReader.read().split("\n").length);
 
-//        String content = filePartReader.read();
-//        assertEquals("1\n2\n3", content);
 
     }
     @Test
-    public void setup_and_readLinesCorrectData() throws IOException{
+    public void setup_and_readLinesCorrectData(){
         filePartReader.setup("text.txt",1,4);
         assertEquals(4,filePartReader.readLines().split("\n").length);
     }
@@ -32,19 +30,19 @@ class FilePartReaderTest {
     }
 
     @Test
-    public void checkExaxtMasage_read() throws IOException {
+    public void checkExaxtMasage_read() {
         filePartReader.setup("test2.txt",1,2);
         assertEquals("1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n",filePartReader.read());
     }
 
     @Test
-    public void getOneLine_readLines() throws IOException {
+    public void getOneLine_readLines() {
         filePartReader.setup("test2.txt",1,1);
         assertEquals("1",filePartReader.readLines());
     }
 
     @Test
-    public void checkExaxtMasage_readLines() throws IOException {
+    public void checkExaxtMasage_readLines() {
         filePartReader.setup("test2.txt",1,3);
         assertEquals("1\n2\n3\n",filePartReader.readLines());
     }

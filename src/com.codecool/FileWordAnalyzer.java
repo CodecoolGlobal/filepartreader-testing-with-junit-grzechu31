@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class FileWordAnalyzer {
     private FilePartReader filePartReader;
@@ -13,32 +14,32 @@ public class FileWordAnalyzer {
 
     }
 
-    public ArrayList getWordsOrderedAlphabetically() throws IOException {
+    public List getWordsOrderedAlphabetically() {
+
         String data =filePartReader.readLines();
-        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(data.split("\n")));
+        List<String> arrayList = new ArrayList<>(Arrays.asList(data.split("\n")));
         Collections.sort(arrayList);
         return arrayList;
 
     }
 
-    public ArrayList<String> getWordsContainingSubstring(String subString) throws IOException {
-        String data = filePartReader.readLines();
-        String[] dataList = data.split("\n");
-        ArrayList<String> substringList = new ArrayList<>();
-        for (int i = 0; i < dataList.length; i++) {
-            if (dataList[i].contains(subString)) {
-                substringList.add(dataList[i]);
+    public List<String> getWordsContainingSubstring(String subString) {
+        String[] dataList = getArrayFromFilePartReader();
+        List<String> substringList = new ArrayList<>();
+        for (String word : dataList) {
+            if (word.contains(subString)) {
+                substringList.add(word);
             }
         }
         return substringList;
 
-
+//TODO: change all left siede of arraylists should be just LIST; done
     }
+    //TODO: create more small methods and replace some code in side getStringsWhichPalindromes; done
+    public List<String> getStringsWhichPalindromes() {
+        String[] dataArray = getArrayFromFilePartReader();
+        List<String> wordArray = new ArrayList<>();
 
-    public ArrayList<String> getStringsWhichPalindromes() throws IOException {
-        String data = filePartReader.readLines();
-        String[] dataArray = data.split("\n");
-        ArrayList<String> wordArray = new ArrayList<>();
         for (int i = 0; i < dataArray.length; i++) {
 
             int index = dataArray[i].length() / 2;
@@ -61,4 +62,16 @@ public class FileWordAnalyzer {
 
 
     }
+
+    private String[] getArrayFromFilePartReader(){
+        String partOfText = filePartReader.readLines();
+        return partOfText.split("\n");
+
+    }
+
+    public void setFilePartReader(String filePath, int fromLine, int toLine){
+        this.filePartReader.setup(filePath, fromLine, toLine);
+    }
+
+
 }

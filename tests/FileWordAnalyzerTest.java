@@ -2,19 +2,18 @@
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class FileWordAnalyzerTest{
-    FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer();
-    FilePartReader filePartReader = new FilePartReader();
+    private FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer();
+
 
 
     @Test
-    public void test_getWordsOrderedAlphabetically() throws IOException {
-        filePartReader.setup("test4.txt",1,3);
+    public void test_getWordsOrderedAlphabetically()  {
+        fileWordAnalyzer.setFilePartReader("test4.txt",1,3);
         ArrayList<String> expected = new ArrayList<>();
         expected.add("ada");
         expected.add("barbara");
@@ -23,8 +22,8 @@ class FileWordAnalyzerTest{
     }
 
     @Test
-    public void getWordsContainingSubstring() throws IOException {
-        filePartReader.setup("test3.txt",1,5);
+    public void getWordsContainingSubstring() {
+        fileWordAnalyzer.setFilePartReader("test3.txt",1,5);
         ArrayList<String> expected = new ArrayList<>();
         expected.add("asddsa");
         expected.add("asdfdsa");
@@ -33,8 +32,8 @@ class FileWordAnalyzerTest{
     }
 
     @Test
-    public void getStringsWhichPalindromes() throws IOException {
-        filePartReader.setup("test3.txt",1,5);
+    public void getStringsWhichPalindromes() {
+        fileWordAnalyzer.setFilePartReader("test3.txt",1,5);
         ArrayList<String> expected = new ArrayList<>();
         expected.add("asddsa");
         expected.add("asdfdsa");
